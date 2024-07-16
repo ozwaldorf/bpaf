@@ -12,6 +12,7 @@ use bpaf::*;
 /// this datatype is intended for program consumption, usize field in complex commands
 /// is a shared top level argument
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 enum Command {
     Simple,
     Complex1(String, i32),

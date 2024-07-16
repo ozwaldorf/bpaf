@@ -16,6 +16,7 @@ struct Build {
 }
 
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 enum Command {
     Action(Action),
     Build(Build),

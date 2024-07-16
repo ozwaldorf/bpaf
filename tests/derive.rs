@@ -5,6 +5,7 @@ use bpaf::{Bpaf, Parser};
 fn help_with_default_parse() {
     #[derive(Debug, Clone, Bpaf)]
     #[bpaf(options, fallback(Action::CheckConnection))]
+    #[allow(dead_code)]
     enum Action {
         /// Add a new TODO item
         #[bpaf(command)]
@@ -57,6 +58,7 @@ Available commands:
 #[test]
 fn command_and_fallback() {
     #[derive(Debug, Clone, Bpaf)]
+    #[allow(dead_code)]
     enum Action {
         /// Add a new TODO item
         #[bpaf(command)]

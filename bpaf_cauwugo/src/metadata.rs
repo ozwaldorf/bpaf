@@ -73,10 +73,10 @@ pub fn matching_targets<'a>(
                 .filter(move |t| {
                     name.matches(&t.name)
                         && t.kind
-                            .get(0)
+                            .first()
                             .map_or(false, |kind| kinds.contains(&kind.as_str()))
                 })
-                .filter_map(|t| match t.kind.get(0)?.as_str() {
+                .filter_map(|t| match t.kind.first()?.as_str() {
                     "bin" => Some(Exec::Bin {
                         pkg: &p.name,
                         name: &t.name,
@@ -146,7 +146,7 @@ impl Exec {
         };
         name == target.name
             && package.map_or(true, |p| p == pkg)
-            && target.kind.get(0).map(String::as_str) == Some(kind)
+            && target.kind.first().map(String::as_str) == Some(kind)
     }
 
     pub fn name(self) -> &'static str {

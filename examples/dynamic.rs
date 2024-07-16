@@ -3,6 +3,7 @@
 use bpaf::*;
 
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 enum Value {
     Bool(bool),
     Number(usize),

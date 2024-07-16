@@ -13,9 +13,17 @@ pub struct Options {
 fn toggle_options(meta: &'static str, name: &'static str, help: &'static str) -> impl Parser<bool> {
     any(meta, move |s: String| {
         if let Some(suf) = s.strip_prefix('+') {
-            (suf == name).then_some(true)
+            if suf == name {
+                Some(true)
+            } else {
+                None
+            }
         } else if let Some(suf) = s.strip_prefix('-') {
-            (suf == name).then_some(false)
+            if suf == name {
+                Some(false)
+            } else {
+                None
+            }
         } else {
             None
         }

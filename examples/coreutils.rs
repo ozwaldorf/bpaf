@@ -120,7 +120,7 @@ mod base32 {
     use std::path::PathBuf;
 
     fn non_zero(val: Option<usize>) -> Option<usize> {
-        val.and_then(|v| (v > 0).then_some(v))
+        val.and_then(|v| if v > 0 { Some(v) } else { None })
     }
 
     #[derive(Debug, Clone, Bpaf)]

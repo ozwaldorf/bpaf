@@ -44,11 +44,11 @@ fn exec() -> impl Parser<Option<Vec<OsString>>> {
         .help("for every file find finds execute a separate shell command")
         .anywhere();
 
-    let item = any::<OsString, _, _>("ITEM", |s| (s != ";").then_some(s))
+    let item = any::<OsString, _, _>("ITEM", |s| if s != ";" { Some(s) } else { None })
         .help("command with its arguments, find will replace {} with a file name")
         .many();
 
-    let endtag = any::<String, _, _>(";", |s| (s == ";").then_some(()))
+    let endtag = any::<String, _, _>(";", |s| if s == ";" { Some(()) } else { None })
         .help("anything after literal \";\" will be considered a regular option again");
 
     construct!(tag, item, endtag)
